@@ -326,6 +326,7 @@ struct statuses {
   byte afrTarget;
   byte idleDuty;
   bool fanOn; //Whether or not the fan is turned on
+  bool mainRelayOn; // main relay turned on or not
   volatile byte ethanolPct; //Ethanol reading (if enabled). 0 = No ethanol, 100 = pure ethanol. Eg E85 = 85.
   unsigned long TAEEndTime; //The target end time used whenever TAE is turned on
   volatile byte status1;
@@ -623,6 +624,7 @@ struct config6 {
   byte fanHyster;         // Fan hysteresis
   byte fanFreq;           // Fan PWM frequency
   byte fanPWMBins[4];     //Temperature Bins for the PWM fan control
+
 #if defined(CORE_AVR)
   };
 #else
@@ -711,7 +713,10 @@ struct config10 {
   uint8_t flexAdvAdj[6];    //Additional advance (in degrees) @ current ethanol (typically 0 @ 0%, 10-20 @ 100%)
                             //And another three corn rows die.
 
-  byte unused11_75_191[117];
+  byte mainRelayEnable : 1; // is the main relay pin configured?
+  byte pinMainRelay : 6;
+	
+  byte unused11_75_191[114];
 
 #if defined(CORE_AVR)
   };
@@ -778,6 +783,7 @@ byte pinIgnBypass; //The pin used for an ignition bypass (Optional)
 byte pinFlex; //Pin with the flex sensor attached
 byte pinBaro; //Pin that an external barometric pressure sensor is attached to (If used)
 byte pinResetControl; // Output pin used control resetting the Arduino
+byte pinMainRelay; // main relay pin
 
 // global variables // from speeduino.ino
 extern struct statuses currentStatus; // from speeduino.ino

@@ -273,6 +273,10 @@ void setup()
   initialiseAuxPWM();
   initialiseCorrections();
   initialiseADC();
+  
+  if ( configPage10.mainRelayEnable != 0 ) {
+	  digitalWrite(pinMainRelay, HIGH); // turn on the main relay
+  }
 
   //Lookup the current MAP reading for barometric pressure
   instanteneousMAPReading();
