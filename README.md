@@ -1,6 +1,8 @@
 Speeduino
 =========
 
+Forked by Josh Finlay ( @JoshTPT ) to add support for switching a main relay
+
 FAQ:
 =========
 
