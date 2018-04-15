@@ -274,12 +274,8 @@ void setup()
   initialiseCorrections();
   initialiseADC();
 
-  //Serial.print("relay pin is: ");
-  //Serial.println(pinMainRelay);
-  //Serial.println(pinFan);
   if ( configPage10.mainRelayEnable > 0 ) {
-    //Serial.println("Switching main relay on");
-	  digitalWrite(pinMainRelay, HIGH); // turn on the main relay
+	  digitalWrite(pinMainRelay, LOW); // turn on the main relay
   }
 
   //Lookup the current MAP reading for barometric pressure
